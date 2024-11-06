@@ -3,7 +3,7 @@ package org.ironhack.projectfinalworkout.Model;
 import jakarta.persistence.*;
 
 @Entity
-public class Exercise {
+public class Exercise extends Workout {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
