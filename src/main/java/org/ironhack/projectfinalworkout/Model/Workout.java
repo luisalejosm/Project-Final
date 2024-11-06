@@ -1,17 +1,16 @@
 package org.ironhack.projectfinalworkout.Model;
 
 import jakarta.persistence.*;
-
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Workout {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Workout {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String description;
 
     @OneToMany(mappedBy = "Workout", cascade = CascadeType.ALL)
     private Set<Exercise> exercises = new HashSet<>();
