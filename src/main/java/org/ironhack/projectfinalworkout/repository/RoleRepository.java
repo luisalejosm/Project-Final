@@ -6,4 +6,6 @@ import org.ironhack.projectfinalworkout.model.Role;
 
 
 public interface RoleRepository extends JpaRepository<Role, Long> {
+
+    Role findbyName(String name);
 }

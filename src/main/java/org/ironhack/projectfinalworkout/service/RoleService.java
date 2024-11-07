@@ -23,7 +23,7 @@ public class RoleService {
 
     public Role saveRole(Role role){
         log.info("Saving new role {} to the database", role.getName());
-        return (Role) roleRepository;
+        return roleRepository.save(role);
     }
 
 
