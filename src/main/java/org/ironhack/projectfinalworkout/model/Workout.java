@@ -1,4 +1,4 @@
-package org.ironhack.projectfinalworkout.Model;
+package org.ironhack.projectfinalworkout.model;
 
 import jakarta.persistence.*;
 import java.util.HashSet;
@@ -12,6 +12,6 @@ public abstract class Workout {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "Workout", cascade = CascadeType.ALL)
-    private Set<Exercise> exercises = new HashSet<>();
+//    @OneToMany(mappedBy = "Workout", cascade = CascadeType.ALL)
+//    private Set<Exercise> exercises = new HashSet<>();
 }

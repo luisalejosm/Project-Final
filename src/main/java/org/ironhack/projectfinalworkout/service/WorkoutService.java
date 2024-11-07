@@ -1,7 +1,7 @@
-package org.ironhack.projectfinalworkout.Service;
+package org.ironhack.projectfinalworkout.service;
 
 import lombok.Getter;
-import org.ironhack.projectfinalworkout.Repository.WorkoutRepository;
+import org.ironhack.projectfinalworkout.repository.WorkoutRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

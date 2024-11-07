@@ -1,4 +1,4 @@
-package org.ironhack.projectfinalworkout.Model;
+package org.ironhack.projectfinalworkout.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
