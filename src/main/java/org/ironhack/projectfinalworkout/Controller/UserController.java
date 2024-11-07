@@ -1,14 +1,46 @@
 package org.ironhack.projectfinalworkout.Controller;
 
+
+import org.ironhack.projectfinalworkout.model.User;
 import org.ironhack.projectfinalworkout.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+/**
+ * RESTful API for User management
+ */
 @RestController
 @RequestMapping("/api")
 public class UserController {
 
+    /**
+     * User service for accessing user data
+     */
     @Autowired
     private UserService userService;
+
+    /**
+     * Get a list of all users
+     *
+     * @return list of all users
+     */
+    @GetMapping("/users")
+    @ResponseStatus(HttpStatus.OK)
+    public List<User> getUsers() {
+        return userService.getUsers();
+    }
+
+    /**
+     * Save a new user
+     *
+     * @param user the user to be saved
+     */
+    @PostMapping("/users")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void saveUser(@RequestBody User user) {
+        userService.saveUser(user);
+    }
 }
