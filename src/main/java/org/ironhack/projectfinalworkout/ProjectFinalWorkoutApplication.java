@@ -32,6 +32,7 @@ public class ProjectFinalWorkoutApplication implements CommandLineRunner {
         return args -> {
             roleService.saveRole(new Role(null, "ROLE_USER"));
             roleService.saveRole(new Role(null, "ROLE_ADMIN"));
+            roleService.saveRole(new Role(null, "ROLE_TRAINER"));
 
             userService.saveUser(new User(null, "John Doe", "john", "1234", new ArrayList<>()));
             userService.saveUser(new User(null, "James Smith", "james", "1234", new ArrayList<>()));

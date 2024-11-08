@@ -3,6 +3,7 @@ package org.ironhack.projectfinalworkout.security;
 import org.ironhack.projectfinalworkout.security.filters.CustomAuthenticationFilter;
 import org.ironhack.projectfinalworkout.security.filters.CustomAuthorizationFilter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,9 +25,13 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @RequiredArgsConstructor
 public class SecurityConfig {
 
+    @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
     private AuthenticationManagerBuilder authManagerBuilder;
+
+
 
     @Bean
     public PasswordEncoder encoder() {
@@ -56,7 +61,7 @@ public class SecurityConfig {
                 .requestMatchers(POST, "/api/users").hasAnyAuthority("ROLE_ADMIN")
                 .requestMatchers(POST, "/api/roles").hasAnyAuthority("ROLE_ADMIN")
                 .requestMatchers(POST, "/api/roles/add-to-user").hasAnyAuthority("ROLE_ADMIN")
-                .requestMatchers(POST, "/api/roles/add-to-user").hasAnyAuthority("ROLE_ADMIN")
+                .requestMatchers(POST, "/api/workouts").hasAnyAuthority("ROLE_TRAINER")
                 .anyRequest().authenticated()); // any other endpoints require authentication
 
         http.addFilter(customAuthenticationFilter);

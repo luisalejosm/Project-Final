@@ -16,5 +16,9 @@ public class Exercise extends Workout {
     private String name;
     private String description;
 
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "id")
+//    private Workout workout;
+
 
 }

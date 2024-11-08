@@ -1,10 +1,13 @@
 package org.ironhack.projectfinalworkout.Controller;
 
-import lombok.Getter;
-import org.ironhack.projectfinalworkout.repository.WorkoutRepository;
+import org.ironhack.projectfinalworkout.model.Workout;
+import org.ironhack.projectfinalworkout.service.WorkoutService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -13,13 +16,30 @@ public class WorkoutController {
 
 
    @Autowired
-   public WorkoutRepository workoutRepository;
+   public WorkoutService workoutService;
 
-//   @GetMapping("{id}")
-//    public ResponseEntity<Workout> getWorkoutById(@PathVariable("id") Long workoutId){
-//       Optional<Workout> optionalWorkout = WorkoutRepository.findById(workoutId);
-//       return null;
-//   }
+   @GetMapping
+   public List<Workout> getAllWorkouts(){
+      return workoutService.findAll();
+   }
 
+   @PostMapping
+   public Workout createWorkout(@RequestBody Workout workout) {
+      return workoutService.saveWorkout(workout);
+   }
 
+   @PutMapping("/{id}")
+   public Workout updateWorkout(@PathVariable Long id, @RequestBody Workout workoutDetails) {
+      Optional<Workout> optionalWorkout = Optional.ofNullable(workoutService.updateWorkout(id));
+      if(optionalWorkout.isPresent()){
+
+      }
+      return workoutService.updateWorkout(id);
+   }
+
+   @DeleteMapping("/{id}")
+   public ResponseEntity<?> deleteWorkout(@PathVariable Long id) {
+      workoutService.deleteWorkout(id);
+      return ResponseEntity.ok().build();
+   }
 }
