@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Getter
 @Service
 @Slf4j
 public class WorkoutService {
@@ -22,9 +21,9 @@ public class WorkoutService {
         this.workoutRepository = workoutRepository;
     }
 
-    public List<Workout> findAll() {
-        return workoutRepository.findAll();
-    }
+//    public List<Workout> findRutine() {
+//        return workoutRepository.findAllRutine();
+//    }
 
     public Optional<Workout> findById(Long id){
         return workoutRepository.findById(id);

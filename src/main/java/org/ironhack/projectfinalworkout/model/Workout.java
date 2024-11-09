@@ -14,10 +14,8 @@ import java.util.Set;
 public abstract class Workout {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long workoutId;
     private String name;
     private String type;
 
-//    @OneToMany(mappedBy = "Workout", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private Set<Exercise> exercises = new HashSet<>();
 }

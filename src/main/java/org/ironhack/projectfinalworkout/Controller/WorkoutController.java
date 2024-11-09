@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 
+
 @RestController
 @RequestMapping("/api/workouts")
 public class WorkoutController {
@@ -19,8 +20,8 @@ public class WorkoutController {
    public WorkoutService workoutService;
 
    @GetMapping
-   public List<Workout> getAllWorkouts(){
-      return workoutService.findAll();
+   public List<Workout> getAllWorkoutsById(){
+      return workoutService.findById();
    }
 
    @PostMapping
@@ -29,12 +30,10 @@ public class WorkoutController {
    }
 
    @PutMapping("/{id}")
-   public Workout updateWorkout(@PathVariable Long id, @RequestBody Workout workoutDetails) {
+   public Workout updateWorkout(@PathVariable Long id, @RequestBody Workout workout) {
       Optional<Workout> optionalWorkout = Optional.ofNullable(workoutService.updateWorkout(id));
-      if(optionalWorkout.isPresent()){
-
-      }
-      return workoutService.updateWorkout(id);
+             ResponseEntity.ok().build();
+       return workoutService.updateWorkout(id);
    }
 
    @DeleteMapping("/{id}")

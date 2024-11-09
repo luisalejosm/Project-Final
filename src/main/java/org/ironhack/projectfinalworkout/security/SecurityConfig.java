@@ -61,7 +61,12 @@ public class SecurityConfig {
                 .requestMatchers(POST, "/api/users").hasAnyAuthority("ROLE_ADMIN")
                 .requestMatchers(POST, "/api/roles").hasAnyAuthority("ROLE_ADMIN")
                 .requestMatchers(POST, "/api/roles/add-to-user").hasAnyAuthority("ROLE_ADMIN")
-                .requestMatchers(POST, "/api/workouts").hasAnyAuthority("ROLE_TRAINER")
+                .requestMatchers(POST, "/api/workouts").hasAnyAuthority("ROLE_TRAINER", "ROLE_ADMIN")
+                .requestMatchers(POST, "/api/workouts").hasAnyAuthority("ROLE_TRAINER", "ROLE_ADMIN")
+                .requestMatchers(GET, "/api/routine").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN", "ROLE_TRAINER")
+                .requestMatchers(GET, "/api/exercises").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN", "ROLE_TRAINER")
+                .requestMatchers(POST, "/api/routine").hasAnyAuthority( "ROLE_ADMIN", "ROLE_TRAINER")
+                .requestMatchers(POST, "/api/exercises").hasAnyAuthority( "ROLE_ADMIN", "ROLE_TRAINER")
                 .anyRequest().authenticated()); // any other endpoints require authentication
 
         http.addFilter(customAuthenticationFilter);

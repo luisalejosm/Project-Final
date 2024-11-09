@@ -5,13 +5,13 @@ import org.ironhack.projectfinalworkout.model.User;
 import org.ironhack.projectfinalworkout.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * RESTful API for User management
- */
 @RestController
 @RequestMapping("/api")
 public class UserController {
@@ -30,6 +30,9 @@ public class UserController {
     @GetMapping("/users")
     @ResponseStatus(HttpStatus.OK)
     public List<User> getUsers() {
+
+        System.out.println(getLoggedInUsername());
+
         return userService.getUsers();
     }
 
@@ -42,5 +45,19 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     public void saveUser(@RequestBody User user) {
         userService.saveUser(user);
+    }
+
+
+    public String getLoggedInUsername() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+            Object principal = authentication.getPrincipal();
+            if (principal instanceof UserDetails) {
+                return ((UserDetails) principal).getUsername(); // Returns the username
+            } else {
+                return principal.toString(); // If it's a string (like when using JWT or OAuth2)
+            }
+        }
+        return null; // Not authenticated
     }
 }
