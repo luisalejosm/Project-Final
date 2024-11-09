@@ -1,6 +1,5 @@
 package org.ironhack.projectfinalworkout.service;
 
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.ironhack.projectfinalworkout.model.Workout;
 import org.ironhack.projectfinalworkout.repository.WorkoutRepository;
@@ -8,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Slf4j
@@ -21,12 +19,8 @@ public class WorkoutService {
         this.workoutRepository = workoutRepository;
     }
 
-//    public List<Workout> findRutine() {
-//        return workoutRepository.findAllRutine();
-//    }
-
-    public Optional<Workout> findById(Long id){
-        return workoutRepository.findById(id);
+    public List<Workout> findAllWorkouts(){
+        return workoutRepository.findAll();
     }
 
     public Workout saveWorkout(Workout workout){

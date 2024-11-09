@@ -20,8 +20,9 @@ public class WorkoutController {
    public WorkoutService workoutService;
 
    @GetMapping
-   public List<Workout> getAllWorkoutsById(){
-      return workoutService.findById();
+   public ResponseEntity<List<Workout>> getAllWorkouts() {
+      List<Workout> workouts = workoutService.findAllWorkouts();
+      return ResponseEntity.ok(workouts);
    }
 
    @PostMapping
